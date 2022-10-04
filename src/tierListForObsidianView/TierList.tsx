@@ -3,7 +3,7 @@ import * as React from "react";
 import { useState } from "react";
 import { render } from "utils/renderHook";
 import { Close } from "utils/SVG";
-import tierListClass, { tier, dnd as dndClass } from "utils/tierList";
+import tierListClass, { tier } from "utils/tierList";
 
 import { Child } from "./Stack";
 
@@ -11,7 +11,6 @@ export default function TierList(props: {
 	tierList: React.MutableRefObject<tierListClass>;
 	render: render;
 	plugin: tierListForObsidian;
-	dnd: React.MutableRefObject<dndClass>;
 }) {
 	const List: Array<JSX.Element> = [];
 
@@ -22,7 +21,6 @@ export default function TierList(props: {
 				render={props.render}
 				tierList={props.tierList}
 				plugin={props.plugin}
-				dnd={props.dnd}
 				key={v.id}
 			/>
 		);
@@ -36,7 +34,6 @@ function Tier(props: {
 	tierList: React.MutableRefObject<tierListClass>;
 	render: render;
 	plugin: tierListForObsidian;
-	dnd: React.MutableRefObject<dndClass>;
 }) {
 	const [settings, setSettings] = useState(() => false);
 	const [color, setColor] = useState(() => props.tier.color);
@@ -65,8 +62,8 @@ function Tier(props: {
 	}
 
 	function onDraged() {
-		if (props.dnd.current.dragedOverTierID === props.tier.id) return;
-		props.dnd.current.dragedOverTierID = props.tier.id;
+		if (props.tierList.current.dragedOverTierID === props.tier.id) return;
+		props.tierList.current.dragedOverTierID = props.tier.id;
 	}
 
 	props.tier.children.forEach((v) =>
@@ -76,8 +73,8 @@ function Tier(props: {
 				render={props.render}
 				child={v}
 				plugin={props.plugin}
-				dnd={props.dnd}
 				tier={props.tier}
+				tierList={props.tierList}
 			/>
 		)
 	);

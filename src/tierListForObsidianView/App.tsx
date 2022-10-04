@@ -3,7 +3,7 @@ import { useRef, useState } from "react";
 import tierListForObsidian from "../main";
 import NavBar from "./NavBar";
 import Stack from "./stack";
-import tierListClass, { dnd as dndClass } from "utils/tierList";
+import tierListClass from "utils/tierList";
 import TierList from "./TierList";
 import useRender from "utils/renderHook";
 
@@ -16,7 +16,6 @@ function App(props: {
 	const render = useRender();
 	const [renameT, setRenameT] = useState(false);
 	const [rename, setRename] = useState(() => tierList.current.name);
-	const dnd = useRef(new dndClass(tierList.current));
 
 	function setTitle(e: React.KeyboardEvent<HTMLInputElement>) {
 		if (e.key === "Enter") {
@@ -49,14 +48,8 @@ function App(props: {
 				tierList={tierList}
 				render={render}
 				plugin={props.plugin}
-				dnd={dnd}
 			/>
-			<Stack
-				tierList={tierList}
-				render={render}
-				plugin={props.plugin}
-				dnd={dnd}
-			/>
+			<Stack tierList={tierList} render={render} plugin={props.plugin} />
 		</div>
 	);
 }

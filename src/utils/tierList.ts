@@ -97,10 +97,19 @@ export default class tierList {
 	tiers: Array<tier>;
 	stack: Array<child>;
 
+	dragedChildID: string;
+	dragedChildTierID: string;
+	dragedOverChildID: string;
+	dragedOverTierID: string;
+
 	constructor() {
 		this.name = "new Tierlist";
 		this.tiers = new Array();
 		this.stack = new Array();
+		this.dragedChildID = "";
+		this.dragedChildTierID = "";
+		this.dragedOverChildID = "";
+		this.dragedOverTierID = "";
 	}
 
 	newChild(name: string, img: string) {
@@ -196,25 +205,9 @@ export default class tierList {
 			this.tiers.push(t);
 		});
 	}
-}
-
-export class dnd {
-	dragedChildID: string;
-	dragedChildTierID: string;
-	dragedOverChildID: string;
-	dragedOverTierID: string;
-	tierList: tierList;
-
-	constructor(tierList: tierList) {
-		this.dragedChildID = "";
-		this.dragedChildTierID = "";
-		this.dragedOverChildID = "";
-		this.dragedOverTierID = "";
-		this.tierList = tierList;
-	}
 
 	drop(callback: Function) {
-		this.tierList.moveChild(
+		this.moveChild(
 			this.dragedChildID,
 			this.dragedChildTierID,
 			this.dragedOverChildID,

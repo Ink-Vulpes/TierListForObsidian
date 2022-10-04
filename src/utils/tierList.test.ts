@@ -210,4 +210,9 @@ describe("testing tierList Class", () => {
 		const save = tl.save();
 		expect(save).toEqual(newTierListSave);
 	});
+	it("test tierlist.drop()", () => {
+		const testFn = jest.fn();
+		tl.drop(testFn);
+		expect(testFn.mock.calls.length).toBe(1);
+	});
 });
