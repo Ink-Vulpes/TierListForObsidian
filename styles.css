@@ -1,8 +1,67 @@
-/*
+.TierListForObsidianApp{
+    height: 100%;
+    display: grid;
+    grid-template-rows: 3em 2em calc(80% - 5em) auto;
+}
+.TierListForObsidianTitle{
+    font-size: 2em;
+    margin: 0 auto;
+}
 
-This CSS file will be included with your plugin, and
-available in the app when your plugin is enabled.
+.TierListForObsidianNavBar{
+    display: flex;
+    align-items: center;
+}
+.TierListForObsidianNavBar input{
+    margin-right: 12px;
+}
 
-If your plugin does not need CSS, delete this file.
+.TierListForObsidianList{
+    overflow-y: scroll;
+    list-style: none;
+}
+.TierListForObsidianList li{
+    display: grid;
+    min-height: 5em;
+    grid-template-columns: 10% auto 2em;
+    background-color: var(--background-secondary);
+}
+.TierListForObsidianList h3{
+    margin: 0;
+    padding: 1em;
+    text-align: center;
+}
+.TierListForObsidianList input{
+    width: 100%;
+}
+.TierListForObsidianList ul{
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+}
 
-*/
+.TierListForObsidianStack{
+    background-color: var(--background-secondary);
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    overflow-y: scroll;
+}
+
+.TierListForObsidianChild{
+    width: 5em;
+    height: 5em;
+    display: block !important;
+}
+
+.TierListForObsidianButtonSmall{
+    width: 2em;
+    height: 2em;
+    padding: .5em;
+}
+.TierListForObsidianButtonSmall svg{
+    fill: var(--text-normal)
+}
+.TierListForObsidianButtonSmall svg:hover{
+    fill: var(--text-muted)
+}
