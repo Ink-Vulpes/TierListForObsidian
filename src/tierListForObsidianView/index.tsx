@@ -4,7 +4,7 @@ import * as React from "react";
 import * as ReactDOM from "react-dom";
 import { createRoot, Root } from "react-dom/client";
 import App from "./App";
-import tierListClass from "../utils/tierList";
+import tierListClass from "../tierList";
 
 export default class tierListForObsidianView extends TextFileView {
 	plugin: tierListForObsidian;

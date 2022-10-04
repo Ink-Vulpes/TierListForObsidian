@@ -1,10 +1,10 @@
 import * as React from "react";
-import tierListClass from "utils/tierList";
+import tierListClass from "tierList";
 import { Plus, SquarePlus, Close, Save } from "utils/SVG";
 import { useRef, useState } from "react";
 import { render } from "utils/renderHook";
 
-function NavBar(props: {
+export default function NavBar(props: {
 	tierList: React.MutableRefObject<tierListClass>;
 	render: render;
 	saveFn: Function;
@@ -86,5 +86,3 @@ function NavBar(props: {
 		</div>
 	);
 }
-
-export default NavBar;

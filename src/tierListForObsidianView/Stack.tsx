@@ -1,7 +1,7 @@
 import tierListForObsidian from "main";
 import * as React from "react";
-import { child, tier } from "utils/tierList";
-import tierListClass from "utils/tierList";
+import tierListClass from "tierList";
+import Child from "./Child";
 
 export default function Stack(props: {
 	tierList: React.MutableRefObject<tierListClass>;
@@ -31,50 +31,5 @@ export default function Stack(props: {
 		<ul className="TierListForObsidianStack" onDragEnter={() => onDraged()}>
 			{children}
 		</ul>
-	);
-}
-
-export function Child(props: {
-	child: child;
-	tier: tier | undefined;
-	render: React.Dispatch<React.SetStateAction<number>>;
-	tierList: React.MutableRefObject<tierListClass>;
-	plugin: tierListForObsidian;
-}) {
-	function startDnd() {
-		props.tierList.current.dragedChildID = props.child.id;
-		props.tierList.current.dragedChildTierID =
-			props.tier === undefined ? "0" : props.tier.id;
-	}
-
-	function stopDnd() {
-		props.tierList.current.drop(props.render);
-		props.tierList.current.dragedChildID = "";
-		props.tierList.current.dragedChildTierID = "";
-	}
-
-	function onDraged() {
-		if (
-			props.tierList.current.dragedOverChildID === props.child.id ||
-			props.tierList.current.dragedChildID === props.child.id
-		)
-			return;
-		props.tierList.current.dragedOverChildID = props.child.id;
-	}
-
-	return (
-		<li
-			className="TierListForObsidianChild"
-			onDragStart={() => startDnd()}
-			onDragEnd={() => stopDnd()}
-			onDragEnter={() => onDraged()}
-			draggable
-		>
-			<img
-				src={props.plugin.app.vault.adapter.getResourcePath(
-					props.child.img
-				)}
-			/>
-		</li>
 	);
 }
