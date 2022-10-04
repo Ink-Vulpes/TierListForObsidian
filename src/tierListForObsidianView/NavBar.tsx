@@ -1,12 +1,13 @@
 import * as React from "react";
 import tierListClass from "utils/tierList";
-import { Plus, SquarePlus, Close } from "utils/SVG";
+import { Plus, SquarePlus, Close, Save } from "utils/SVG";
 import { useRef, useState } from "react";
 import { render } from "utils/renderHook";
 
 function NavBar(props: {
 	tierList: React.MutableRefObject<tierListClass>;
 	render: render;
+	saveFn: Function;
 }) {
 	const [addChildContext, setAddChildContext] = useState(() => false);
 	const NewChildImg = useRef() as React.MutableRefObject<HTMLInputElement>;
@@ -73,6 +74,12 @@ function NavBar(props: {
 						onClick={AddTier}
 					>
 						<SquarePlus />
+					</button>
+					<button
+						className="TierListForObsidianButtonSmall"
+						onClick={() => props.saveFn()}
+					>
+						<Save />
 					</button>
 				</>
 			)}

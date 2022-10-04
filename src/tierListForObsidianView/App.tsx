@@ -7,8 +7,12 @@ import tierListClass, { dnd as dndClass } from "utils/tierList";
 import TierList from "./TierList";
 import useRender from "utils/renderHook";
 
-function App(props: { plugin: tierListForObsidian }) {
-	const tierList = useRef(new tierListClass());
+function App(props: {
+	plugin: tierListForObsidian;
+	tList: tierListClass;
+	saveFn: Function;
+}) {
+	const tierList = useRef(props.tList);
 	const render = useRender();
 	const [renameT, setRenameT] = useState(false);
 	const [rename, setRename] = useState(() => tierList.current.name);
@@ -23,7 +27,7 @@ function App(props: { plugin: tierListForObsidian }) {
 
 	return (
 		<div className="TierListForObsidianApp">
-			<NavBar tierList={tierList} render={render} />
+			<NavBar tierList={tierList} render={render} saveFn={props.saveFn} />
 			{renameT ? (
 				<input
 					type="text"

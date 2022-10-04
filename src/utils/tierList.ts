@@ -12,6 +12,22 @@ export class child {
 		this.name = name;
 		this.img = img;
 	}
+
+	load(save: childSaveFormat) {
+		this.id = save.id;
+		this.color = save.color;
+		this.img = save.img;
+		this.name = save.name;
+	}
+
+	save(): childSaveFormat {
+		return {
+			id: this.id,
+			color: this.color,
+			img: this.img,
+			name: this.name,
+		};
+	}
 }
 
 export class tier {
@@ -47,6 +63,32 @@ export class tier {
 			const element = this.children[i];
 			if (element.id === childId) return i;
 		}
+	}
+
+	save(): tierSaveFormat {
+		const children: Array<childSaveFormat> = new Array();
+		this.children.forEach((v) => {
+			children.push(v.save());
+		});
+
+		return {
+			id: this.id,
+			color: this.color,
+			name: this.name,
+			children: children,
+		};
+	}
+
+	load(save: tierSaveFormat) {
+		this.id = save.id;
+		this.name = save.name;
+		this.color = save.color;
+		this.children = new Array();
+		save.children.forEach((element) => {
+			const c = new child("", "");
+			c.load(element);
+			this.children.push(c);
+		});
 	}
 }
 
@@ -118,9 +160,41 @@ export default class tierList {
 		moveToTierId: string
 	) {
 		const child = this.removeChild(childId, childTierId);
-		console.log(child);
 		if (child === undefined) return;
 		this.addChildTo(child, moveToTierId, moveToChildId);
+	}
+
+	save(): tierListSaveFormat {
+		const stack: Array<childSaveFormat> = new Array();
+		this.stack.forEach((element) => {
+			stack.push(element.save());
+		});
+		const tiers: Array<tierSaveFormat> = new Array();
+		this.tiers.forEach((element) => {
+			tiers.push(element.save());
+		});
+		return {
+			name: this.name,
+			stack: stack,
+			tiers: tiers,
+		};
+	}
+
+	load(save: tierListSaveFormat) {
+		if (save.name === undefined) return;
+		this.name = save.name;
+		this.stack = new Array();
+		save.stack.forEach((element) => {
+			const c = new child("", "");
+			c.load(element);
+			this.stack.push(c);
+		});
+		this.tiers = new Array();
+		save.tiers.forEach((element) => {
+			const t = new tier();
+			t.load(element);
+			this.tiers.push(t);
+		});
 	}
 }
 
@@ -150,23 +224,22 @@ export class dnd {
 	}
 }
 
+type childSaveFormat = {
+	id: string;
+	name: string;
+	color: string;
+	img: string;
+};
+
+type tierSaveFormat = {
+	id: string;
+	name: string;
+	color: string;
+	children: Array<childSaveFormat>;
+};
+
 export type tierListSaveFormat = {
 	name: string;
-	tiers: Array<{
-		id: string;
-		name: string;
-		color: string;
-		children: Array<{
-			id: string;
-			name: string;
-			color: string;
-			img: string;
-		}>;
-	}>;
-	stack: Array<{
-		id: string;
-		name: string;
-		color: string;
-		img: string;
-	}>;
+	tiers: Array<tierSaveFormat>;
+	stack: Array<childSaveFormat>;
 };

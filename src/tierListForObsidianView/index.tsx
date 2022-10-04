@@ -1,12 +1,15 @@
-import tierListForObsidian from "main";
+import tierListForObsidian, { TIER_LIST_FOR_OBSIDIAN_VIEW_TYP } from "main";
 import { TextFileView, WorkspaceLeaf } from "obsidian";
 import * as React from "react";
 import * as ReactDOM from "react-dom";
-import { createRoot } from "react-dom/client";
+import { createRoot, Root } from "react-dom/client";
 import App from "./App";
+import tierListClass from "../utils/tierList";
 
 export default class tierListForObsidianView extends TextFileView {
 	plugin: tierListForObsidian;
+	tierList: tierListClass;
+	root: Root;
 
 	constructor(leaf: WorkspaceLeaf, plugin: tierListForObsidian) {
 		super(leaf);
@@ -16,24 +19,34 @@ export default class tierListForObsidianView extends TextFileView {
 	clear(): void {}
 
 	async onOpen() {
-		const root = createRoot(this.containerEl.children[1]);
-		root.render(
-			<React.StrictMode>
-				<App plugin={this.plugin} />
-			</React.StrictMode>
-		);
+		this.root = createRoot(this.containerEl.children[1]);
+		this.tierList = new tierListClass();
 	}
 
 	async onClose() {
+		this.root.unmount();
 		ReactDOM.unmountComponentAtNode(this.containerEl.children[1]);
 	}
 
-	unload(): void {}
 	getViewData(): string {
-		return "";
+		const save = this.tierList.save();
+		return JSON.stringify(save);
 	}
+
 	getViewType(): string {
-		return "";
+		return TIER_LIST_FOR_OBSIDIAN_VIEW_TYP;
 	}
-	setViewData(data: string, clear: boolean): void {}
+
+	setViewData(data: string, clear = false): void {
+		this.tierList.load(JSON.parse(data));
+		this.root.render(
+			<React.StrictMode>
+				<App
+					plugin={this.plugin}
+					tList={this.tierList}
+					saveFn={this.requestSave}
+				/>
+			</React.StrictMode>
+		);
+	}
 }
