@@ -38,7 +38,7 @@ export class tier {
 
 	constructor() {
 		this.id = makeid(25);
-		this.name = "new Tier";
+		this.name = "new tier";
 		this.color = "red";
 		this.children = new Array();
 	}
