@@ -1,4 +1,4 @@
-import tierListForObsidian, { TIER_LIST_FOR_OBSIDIAN_VIEW_TYP } from "main";
+import tierListForObsidian, { TIER_LIST_FOR_OBSIDIAN_VIEW_TYP } from "../main";
 import { TextFileView, WorkspaceLeaf } from "obsidian";
 import * as React from "react";
 import * as ReactDOM from "react-dom";
@@ -14,13 +14,13 @@ export default class tierListForObsidianView extends TextFileView {
 	constructor(leaf: WorkspaceLeaf, plugin: tierListForObsidian) {
 		super(leaf);
 		this.plugin = plugin;
+		this.tierList = new tierListClass();
 	}
 
 	clear(): void {}
 
 	async onOpen() {
 		this.root = createRoot(this.containerEl.children[1]);
-		this.tierList = new tierListClass();
 	}
 
 	async onClose() {

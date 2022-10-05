@@ -7,11 +7,7 @@ import { ObsidianPluginDummy as plugin } from "../utils/test-utils";
 import tierListForObsidian from "../main";
 import tierList from "../tierList";
 
-jest.mock("./Child", () => (props: { child: child }) => (
-	<div data-testid="TierListForObsidianChild">
-		{JSON.stringify(props.child.save())}
-	</div>
-));
+jest.mock("./Child");
 
 var tl: tierList = new tierList();
 

@@ -5,13 +5,8 @@ import tierList from "../tierList";
 import Stack from "./Stack";
 import { ObsidianPluginDummy as plugin } from "../utils/test-utils";
 import tierListForObsidian from "../main";
-import child from "../tierList/child";
 
-jest.mock("./Child", () => (props: { child: child }) => (
-	<div data-testid="TierListForObsidianChild">
-		{JSON.stringify(props.child.save())}
-	</div>
-));
+jest.mock("./Child");
 
 var tl: tierList;
 var renderMock = jest.fn();

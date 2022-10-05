@@ -2,7 +2,5 @@
 module.exports = {
 	preset: "ts-jest",
 	testEnvironment: "jsdom",
-	roots: ["<rootDir>"],
-	modulePaths: ["<rootDir>"],
-	moduleDirectories: ["node_modules"],
+	collectCoverageFrom: ["src/**/*.ts", "src/**/*.tsx"],
 };
