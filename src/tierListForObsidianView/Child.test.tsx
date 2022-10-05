@@ -71,3 +71,18 @@ it("test onDragEnd Event", async () => {
 		dragedChildTierID: "",
 	});
 });
+
+it("test onDragEnter Event", async () => {
+	render(
+		<Child
+			plugin={plugin as unknown as tierListForObsidian}
+			child={child}
+			render={renderMuck}
+			tier={tl.tiers[0]}
+			tierList={{ current: tl }}
+		/>
+	);
+	const childDOM = await screen.findByTestId("TierListForObsidianChild");
+	fireEvent.dragEnter(childDOM);
+	expect(tl.dragedOverChildID).toBe(child.id);
+});

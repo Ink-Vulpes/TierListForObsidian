@@ -5,9 +5,9 @@ import NavBar from "./NavBar";
 import Stack from "./stack";
 import tierListClass from "tierList";
 import TierList from "./TierList";
-import useRender from "utils/renderHook";
+import useRender from "../utils/renderHook";
 
-function App(props: {
+export default function App(props: {
 	plugin: tierListForObsidian;
 	tList: tierListClass;
 	saveFn: Function;
@@ -25,25 +25,29 @@ function App(props: {
 	}
 
 	return (
-		<div className="TierListForObsidianApp">
+		<div
+			className="TierListForObsidianApp"
+			data-testid="TierListForObsidianApp"
+		>
 			<NavBar tierList={tierList} render={render} saveFn={props.saveFn} />
-			{renameT ? (
-				<input
-					type="text"
-					value={rename}
-					onChange={(c) => setRename(c.target.value)}
-					onKeyDown={(e) => setTitle(e)}
-				/>
-			) : (
-				<h2
-					className="TierListForObsidianTitle"
-					onClick={() => {
-						setRenameT(true);
-					}}
-				>
-					{tierList.current.name}
-				</h2>
-			)}
+			<input
+				type="text"
+				data-testid="TierListForObsidiaInput"
+				value={rename}
+				onChange={(c) => setRename(c.target.value)}
+				onKeyDown={(e) => setTitle(e)}
+				hidden={!renameT}
+			/>
+			<h2
+				className="TierListForObsidianTitle"
+				data-testid="TierListForObsidianTitle"
+				onClick={() => {
+					setRenameT(true);
+				}}
+				hidden={renameT}
+			>
+				{tierList.current.name}
+			</h2>
 			<TierList
 				tierList={tierList}
 				render={render}
@@ -53,5 +57,3 @@ function App(props: {
 		</div>
 	);
 }
-
-export default App;

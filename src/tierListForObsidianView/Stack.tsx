@@ -18,6 +18,7 @@ export default function Stack(props: {
 				plugin={props.plugin}
 				tier={undefined}
 				tierList={props.tierList}
+				data-testid="TierListForObsidiaStackChild"
 			/>
 		)
 	);

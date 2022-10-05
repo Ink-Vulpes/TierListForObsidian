@@ -58,34 +58,38 @@ export default function Tier(props: {
 	);
 
 	return (
-		<li onDragEnter={() => onDraged()}>
-			{settings ? (
-				<div>
-					<input
-						type="text"
-						value={name}
-						onChange={(e) => changeEventHandler(e, false)}
-						onKeyDown={(e) => enterEventHandler(e)}
-					/>
-					<input
-						type="text"
-						value={color}
-						style={{ backgroundColor: color }}
-						onChange={(e) => changeEventHandler(e, true)}
-						onKeyDown={(e) => enterEventHandler(e)}
-					/>
-				</div>
-			) : (
-				<h3
-					style={{ backgroundColor: props.tier.color }}
-					onClick={() => setSettings(true)}
-				>
-					{props.tier.name}
-				</h3>
-			)}
+		<li onDragEnter={() => onDraged()} data-testid="TierListForObsidiaTier">
+			<div>
+				<input
+					type="text"
+					data-testid="TierListForObsidiaTierInputImg"
+					value={name}
+					onChange={(e) => changeEventHandler(e, false)}
+					onKeyDown={(e) => enterEventHandler(e)}
+					hidden={!settings}
+				/>
+				<input
+					type="text"
+					data-testid="TierListForObsidiaTierInputText"
+					value={color}
+					style={{ backgroundColor: color }}
+					onChange={(e) => changeEventHandler(e, true)}
+					onKeyDown={(e) => enterEventHandler(e)}
+					hidden={!settings}
+				/>
+			</div>
+			<h3
+				data-testid="TierListForObsidiaTierText"
+				style={{ backgroundColor: props.tier.color }}
+				onClick={() => setSettings(true)}
+				hidden={settings}
+			>
+				{props.tier.name}
+			</h3>
 			<ul>{children}</ul>
 			<button
 				className="TierListForObsidianButtonSmall"
+				data-testid="TierListForObsidiaTierButtonRemove"
 				onClick={removeTier}
 			>
 				<Close />

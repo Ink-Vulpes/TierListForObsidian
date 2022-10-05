@@ -1,8 +1,8 @@
 import * as React from "react";
 import tierListClass from "tierList";
-import { Plus, SquarePlus, Close, Save } from "utils/SVG";
+import { Plus, SquarePlus, Close, Save } from "../utils/SVG";
 import { useRef, useState } from "react";
-import { render } from "utils/renderHook";
+import { render } from "../utils/renderHook";
 
 export default function NavBar(props: {
 	tierList: React.MutableRefObject<tierListClass>;
@@ -34,55 +34,66 @@ export default function NavBar(props: {
 
 	return (
 		<div className="TierListForObsidianNavBar">
-			{addChildContext ? (
-				<>
-					<input
-						type="text"
-						placeholder="Name"
-						ref={NewChildName}
-						onKeyDown={(e) => EnterEvent(e)}
-					/>
-					<input
-						type="text"
-						placeholder="Image path"
-						onKeyDown={(e) => EnterEvent(e)}
-						ref={NewChildImg}
-					/>
-					<button
-						className="TierListForObsidianButtonSmall"
-						onClick={AddChild}
-					>
-						<Plus />
-					</button>
-					<button
-						className="TierListForObsidianButtonSmall"
-						onClick={() => setAddChildContext(false)}
-					>
-						<Close />
-					</button>
-				</>
-			) : (
-				<>
-					<button
-						className="TierListForObsidianButtonSmall"
-						onClick={() => setAddChildContext(true)}
-					>
-						<Plus />
-					</button>
-					<button
-						className="TierListForObsidianButtonSmall"
-						onClick={AddTier}
-					>
-						<SquarePlus />
-					</button>
-					<button
-						className="TierListForObsidianButtonSmall"
-						onClick={() => props.saveFn()}
-					>
-						<Save />
-					</button>
-				</>
-			)}
+			<>
+				<input
+					type="text"
+					placeholder="Name"
+					data-testid="TierListForObsidianTextInput"
+					ref={NewChildName}
+					onKeyDown={(e) => EnterEvent(e)}
+					hidden={!addChildContext}
+				/>
+				<input
+					type="text"
+					placeholder="Image path"
+					data-testid="TierListForObsidianImgInput"
+					onKeyDown={(e) => EnterEvent(e)}
+					ref={NewChildImg}
+					hidden={!addChildContext}
+				/>
+				<button
+					className="TierListForObsidianButtonSmall"
+					data-testid="TierListForObsidianButtonAddChildSave"
+					onClick={AddChild}
+					hidden={!addChildContext}
+				>
+					<Plus />
+				</button>
+				<button
+					className="TierListForObsidianButtonSmall"
+					data-testid="TierListForObsidianButtonAddChildClose"
+					onClick={() => setAddChildContext(false)}
+					hidden={!addChildContext}
+				>
+					<Close />
+				</button>
+			</>
+			<>
+				<button
+					className="TierListForObsidianButtonSmall"
+					data-testid="TierListForObsidianButtonAddChild"
+					onClick={() => setAddChildContext(true)}
+					hidden={addChildContext}
+				>
+					<Plus />
+				</button>
+				<button
+					className="TierListForObsidianButtonSmall"
+					data-testid="TierListForObsidianButtonAddTier"
+					onClick={AddTier}
+					hidden={addChildContext}
+				>
+					<SquarePlus />
+				</button>
+				<button
+					className="TierListForObsidianButtonSmall"
+					data-testid="TierListForObsidianFileSave"
+					onClick={() => props.saveFn()}
+					hidden={addChildContext}
+				>
+					<Save />
+				</button>
+			</>
 		</div>
 	);
 }
