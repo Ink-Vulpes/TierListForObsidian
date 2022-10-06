@@ -98,7 +98,7 @@ export default class tierList {
 		moveToTierId: string
 	) {
 		const child = this.removeChild(childId, childTierId);
-		if (child === undefined) return;
+		if (child === undefined || moveToChildId === "del") return;
 		this.addChildTo(child, moveToTierId, moveToChildId);
 	}
 

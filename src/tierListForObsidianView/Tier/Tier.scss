@@ -5,6 +5,10 @@
 	background-color: var(--background-secondary);
 }
 
+.TierListForObsidiaTierText {
+	overflow: hidden;
+}
+
 .TierListForObsidiaTierEdit,
 .TierListForObsidiaTierText {
 	grid-column: 1;

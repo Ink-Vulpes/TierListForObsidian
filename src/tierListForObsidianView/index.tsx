@@ -24,6 +24,7 @@ export default class tierListForObsidianView extends TextFileView {
 	}
 
 	async onClose() {
+		this.save();
 		this.root.unmount();
 		ReactDOM.unmountComponentAtNode(this.containerEl.children[1]);
 	}

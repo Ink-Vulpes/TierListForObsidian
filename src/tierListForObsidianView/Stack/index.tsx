@@ -2,6 +2,7 @@ import tierListForObsidian from "../../main";
 import * as React from "react";
 import tierListClass from "../../tierList";
 import Child from "../Child";
+import { Trash } from "../../utils/SVG";
 
 export default function Stack(props: {
 	tierList: React.MutableRefObject<tierListClass>;
@@ -28,9 +29,21 @@ export default function Stack(props: {
 		props.tierList.current.dragedOverTierID = "0";
 	}
 
+	function delDraged() {
+		if (props.tierList.current.dragedOverTierID === "del") return;
+		props.tierList.current.dragedOverTierID = "del";
+	}
+
 	return (
-		<ul className="TierListForObsidianStack" onDragEnter={() => onDraged()}>
-			{children}
-		</ul>
+		<div className="TierListForObsidianStack">
+			<ul onDragEnter={() => onDraged()}>{children}</ul>
+			<div
+				className="TierListForObsidianStackDel"
+				data-testid="TierListForObsidianStackDel"
+				onDragEnter={() => delDraged()}
+			>
+				<Trash />
+			</div>
+		</div>
 	);
 }

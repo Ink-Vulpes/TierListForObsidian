@@ -44,3 +44,17 @@ it("test DragEnter Event", () => {
 	fireEvent.dragEnter(childDom);
 	expect(tl.dragedOverTierID).toBe("0");
 });
+
+it("test delDraged Event", () => {
+	tl.newChild("test", "test.jpg");
+	render(
+		<Stack
+			plugin={plugin as unknown as tierListForObsidian}
+			render={renderMock}
+			tierList={{ current: tl }}
+		/>
+	);
+	const delDom = screen.getByTestId("TierListForObsidianStackDel");
+	fireEvent.dragEnter(delDom);
+	expect(tl.dragedOverTierID).toBe("del");
+});

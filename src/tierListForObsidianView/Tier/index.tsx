@@ -39,7 +39,7 @@ export default function Tier(props: {
 		props.render();
 	}
 
-	function onDraged() {
+	function onDraged(e: React.DragEvent<HTMLLIElement>) {
 		if (props.tierList.current.dragedOverTierID === props.tier.id) return;
 		props.tierList.current.dragedOverTierID = props.tier.id;
 	}
@@ -59,7 +59,7 @@ export default function Tier(props: {
 
 	return (
 		<li
-			onDragEnter={() => onDraged()}
+			onDragEnter={(e) => onDraged(e)}
 			className="TierListForObsidiaTier"
 			data-testid="TierListForObsidiaTier"
 		>

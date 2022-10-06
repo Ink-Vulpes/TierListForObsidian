@@ -191,6 +191,20 @@ describe("test tierlist.moveChild()", () => {
 		expect(tl.tiers[1].children.length).toBe(3);
 		expect(tl.tiers[1].children[1]).toEqual(child);
 	});
+	it("{stack -> del}", () => {
+		tl.newChild("test", "test.jpg");
+		const child = tl.stack[0];
+		tl.moveChild(child.id, "0", "", "del");
+		expect(tl.stack.length).toBe(0);
+	});
+	it("{tier -> del}", () => {
+		tl.newTier();
+		const tier = tl.tiers[0];
+		tl.addChildTo(new ChildClass("test", "test.jpg"), tier.id, "");
+		const child = tl.tiers[0].children[0];
+		tl.moveChild(child.id, tier.id, "", "del");
+		expect(tier.children.length).toBe(0);
+	});
 });
 it("test tierlist.load()", () => {
 	tl.load(tierListSave);

@@ -32,9 +32,12 @@ it("test onOpen()", () => {
 
 it("test onClose()", () => {
 	const unmountMock = jest.fn();
+	const saveMock = jest.fn();
 	const reactUnmoutMock = jest.spyOn(ReactDOM, "unmountComponentAtNode");
+	i.save = saveMock;
 	i.root.unmount = unmountMock;
 	i.onClose();
+	expect(saveMock).toBeCalled();
 	expect(unmountMock).toBeCalled();
 	expect(reactUnmoutMock).toBeCalledWith(true);
 });

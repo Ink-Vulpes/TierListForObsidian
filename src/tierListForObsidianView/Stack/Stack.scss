@@ -1,7 +1,27 @@
 .TierListForObsidianStack {
 	background-color: var(--background-secondary);
-	list-style: none;
-	display: flex;
-	flex-wrap: wrap;
-	overflow-y: scroll;
+	height: 100%;
+	display: grid;
+	grid-template-columns: 90% 10%;
+	grid-template-rows: 50% 50%;
+	ul {
+		margin-right: 1em;
+		grid-column: 1;
+		grid-row-start: 1;
+		grid-row-end: span 2;
+		list-style: none;
+		display: flex;
+		flex-wrap: wrap;
+		overflow-y: scroll;
+	}
+}
+
+.TierListForObsidianStackDel {
+	grid-column: 2;
+	grid-row: 1;
+	background-color: var(--text-error);
+	padding: 10% 10%;
+	svg {
+		fill: var(--background-modifier-error);
+	}
 }
