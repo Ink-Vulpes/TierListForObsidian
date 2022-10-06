@@ -1,12 +1,12 @@
 import "@testing-library/jest-dom/extend-expect";
 import * as React from "react";
 import { render, fireEvent, screen, waitFor } from "@testing-library/react";
-import tierList from "../tierList";
-import Stack from "./Stack";
-import { ObsidianPluginDummy as plugin } from "../utils/test-utils";
-import tierListForObsidian from "../main";
+import tierList from "../../tierList";
+import Stack from ".";
+import { ObsidianPluginDummy as plugin } from "../../utils/test-utils";
+import tierListForObsidian from "../../main";
 
-jest.mock("./Child");
+jest.mock("../Child");
 
 var tl: tierList;
 var renderMock = jest.fn();

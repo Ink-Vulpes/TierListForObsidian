@@ -1,8 +1,8 @@
 import * as React from "react";
-import tierListClass from "tierList";
-import { Plus, SquarePlus, Close, Save } from "../utils/SVG";
+import tierListClass from "../../tierList";
+import { Plus, SquarePlus, Close, Save } from "../../utils/SVG";
 import { useRef, useState } from "react";
-import { render } from "../utils/renderHook";
+import { render } from "../../utils/renderHook";
 
 export default function NavBar(props: {
 	tierList: React.MutableRefObject<tierListClass>;

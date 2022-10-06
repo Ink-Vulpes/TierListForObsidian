@@ -1,8 +1,8 @@
-import tierListForObsidian from "../main";
+import tierListForObsidian from "../../main";
 import * as React from "react";
-import tier from "tierList/tier";
-import child from "tierList/child";
-import tierListClass from "../tierList";
+import tier from "../../tierList/tier";
+import child from "../../tierList/child";
+import tierListClass from "../../tierList";
 
 export default function Child(props: {
 	child: child;

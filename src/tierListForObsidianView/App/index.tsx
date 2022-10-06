@@ -1,11 +1,11 @@
 import * as React from "react";
 import { useRef, useState } from "react";
-import tierListForObsidian from "../main";
-import NavBar from "./NavBar";
-import Stack from "./stack";
-import tierListClass from "tierList";
-import TierList from "./TierList";
-import useRender from "../utils/renderHook";
+import tierListForObsidian from "../../main";
+import NavBar from "../NavBar";
+import Stack from "../Stack";
+import tierListClass from "../../tierList";
+import TierList from "../TierList";
+import useRender from "../../utils/renderHook";
 
 export default function App(props: {
 	plugin: tierListForObsidian;

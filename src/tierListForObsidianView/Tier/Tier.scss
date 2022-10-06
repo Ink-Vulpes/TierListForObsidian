@@ -1,0 +1,17 @@
+.TierListForObsidiaTier {
+	display: grid;
+	min-height: 5em;
+	grid-template-columns: 10% auto 2em;
+	background-color: var(--background-secondary);
+}
+
+.TierListForObsidiaTierEdit,
+.TierListForObsidiaTierText {
+	grid-column: 1;
+	grid-row: 1;
+}
+
+.TierListForObsidiaTierChildren {
+	grid-column: 2;
+	grid-row: 1;
+}

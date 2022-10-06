@@ -1,8 +1,8 @@
 import "@testing-library/jest-dom/extend-expect";
 import * as React from "react";
 import { render, fireEvent, screen, waitFor } from "@testing-library/react";
-import tierList from "../tierList";
-import NavBar from "./NavBar";
+import tierList from "../../tierList";
+import NavBar from ".";
 
 const saveFnMock = jest.fn();
 const renderFnMock = jest.fn();

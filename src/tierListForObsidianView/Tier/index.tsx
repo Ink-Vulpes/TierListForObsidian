@@ -1,11 +1,11 @@
-import tierListForObsidian from "../main";
+import tierListForObsidian from "../../main";
 import * as React from "react";
 import { useState } from "react";
-import { render } from "../utils/renderHook";
-import { Close } from "../utils/SVG";
-import tierListClass from "../tierList";
+import { render } from "../../utils/renderHook";
+import { Close } from "../../utils/SVG";
+import tierListClass from "../../tierList";
 import tier from "tierList/tier";
-import Child from "./Child";
+import Child from "../Child";
 
 export default function Tier(props: {
 	tier: tier;
@@ -58,8 +58,12 @@ export default function Tier(props: {
 	);
 
 	return (
-		<li onDragEnter={() => onDraged()} data-testid="TierListForObsidiaTier">
-			<div>
+		<li
+			onDragEnter={() => onDraged()}
+			className="TierListForObsidiaTier"
+			data-testid="TierListForObsidiaTier"
+		>
+			<div className="TierListForObsidiaTierEdit">
 				<input
 					type="text"
 					data-testid="TierListForObsidiaTierInputImg"
@@ -80,13 +84,14 @@ export default function Tier(props: {
 			</div>
 			<h3
 				data-testid="TierListForObsidiaTierText"
+				className="TierListForObsidiaTierText"
 				style={{ backgroundColor: props.tier.color }}
 				onClick={() => setSettings(true)}
 				hidden={settings}
 			>
 				{props.tier.name}
 			</h3>
-			<ul>{children}</ul>
+			<ul className="TierListForObsidiaTierChildren">{children}</ul>
 			<button
 				className="TierListForObsidianButtonSmall"
 				data-testid="TierListForObsidiaTierButtonRemove"

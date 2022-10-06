@@ -1,7 +1,7 @@
-import tierListForObsidian from "main";
+import tierListForObsidian from "../../main";
 import * as React from "react";
-import tierListClass from "tierList";
-import Child from "./Child";
+import tierListClass from "../../tierList";
+import Child from "../Child";
 
 export default function Stack(props: {
 	tierList: React.MutableRefObject<tierListClass>;

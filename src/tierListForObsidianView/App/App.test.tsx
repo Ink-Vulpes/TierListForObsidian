@@ -1,14 +1,14 @@
 import * as React from "react";
 import { render, fireEvent, screen, waitFor } from "@testing-library/react";
-import App from "./App";
-import { ObsidianPluginDummy as plugin } from "../utils/test-utils";
-import tierListForObsidian from "../main";
-import tierList from "../tierList";
+import App from ".";
+import { ObsidianPluginDummy as plugin } from "../../utils/test-utils";
+import tierListForObsidian from "../../main";
+import tierList from "../../tierList";
 import "@testing-library/jest-dom/extend-expect";
 
-jest.mock("./NavBar", () => () => <div></div>);
-jest.mock("./stack", () => () => <div></div>);
-jest.mock("./TierList", () => () => <div></div>);
+jest.mock("../NavBar", () => () => <div></div>);
+jest.mock("../stack", () => () => <div></div>);
+jest.mock("../TierList", () => () => <div></div>);
 
 var tl: tierList;
 var AppTitleDom: HTMLElement;

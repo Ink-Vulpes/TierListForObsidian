@@ -1,10 +1,10 @@
 import * as React from "react";
 import { render, fireEvent, screen } from "@testing-library/react";
-import Child from "./Child";
-import tierListForObsidian from "../main";
-import tierList from "../tierList";
-import { ObsidianPluginDummy as plugin } from "../utils/test-utils";
-import childClass from "../tierList/child";
+import Child from ".";
+import tierListForObsidian from "../../main";
+import tierList from "../../tierList";
+import { ObsidianPluginDummy as plugin } from "../../utils/test-utils";
+import childClass from "../../tierList/child";
 
 const renderMuck = jest.fn();
 const tierListDorpMock = jest.spyOn(tierList.prototype, "drop");
