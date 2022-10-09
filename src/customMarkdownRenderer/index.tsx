@@ -9,7 +9,7 @@ type config = {
 	file: TFile;
 	type: showType;
 };
-type showType = "visual" | "text";
+type showType = "visual" | "table";
 
 type Root = reactRoot & {
 	_internalRoot: any;
@@ -63,7 +63,7 @@ export default class MarkdownRenderer extends MarkdownRenderChild {
 			case "visual":
 				this.loadAsVisual();
 				break;
-			case "text":
+			case "table":
 				this.loadAsText();
 				break;
 		}
@@ -75,7 +75,7 @@ export default class MarkdownRenderer extends MarkdownRenderChild {
 				if (this.root._internalRoot === null) return;
 				this.root.unmount();
 				break;
-			case "text":
+			case "table":
 				this.containerEl.innerHTML = "";
 		}
 	}
@@ -95,7 +95,7 @@ export default class MarkdownRenderer extends MarkdownRenderChild {
 		var el = table.createEl("tr");
 		el.createEl("th", { text: "Tier" });
 		el.createEl("th", { text: "Name" });
-		el.createEl("th", { text: "Img" });
+		el.createEl("th", { text: "Image" });
 
 		this.tl.tiers.forEach((tier) => {
 			tier.children.forEach((child) => {
