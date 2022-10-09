@@ -4,8 +4,10 @@
 	display: grid;
 	grid-template-columns: 90% 10%;
 	grid-template-rows: 50% 50%;
+
 	ul {
 		margin-right: 1em;
+		height: 100%;
 		grid-column: 1;
 		grid-row-start: 1;
 		grid-row-end: span 2;

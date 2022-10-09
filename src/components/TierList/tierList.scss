@@ -1,11 +1,8 @@
 .TierListForObsidianList {
 	overflow-y: scroll;
 	list-style: none;
-	h3 {
-		margin: 0;
-		padding: 1em;
-		text-align: center;
-	}
+	margin: 0;
+	padding: 0;
 	input {
 		width: 100%;
 	}
@@ -13,5 +10,8 @@
 		padding: 0;
 		display: flex;
 		flex-wrap: wrap;
+	}
+	&::-webkit-scrollbar {
+		display: none;
 	}
 }

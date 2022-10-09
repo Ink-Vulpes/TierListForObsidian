@@ -1,18 +1,18 @@
 import { App, PluginManifest } from "obsidian";
-import main from "./main";
+import tierListForObsidian from "./main";
 
 jest.mock("obsidian");
 
-it("test onload()", () => {
-	const m = new main(
+beforeEach(() => jest.clearAllMocks());
+
+it("test onload()", async () => {
+	const m = new tierListForObsidian(
 		null as unknown as App,
 		null as unknown as PluginManifest
 	);
-	const registerViewMock = jest.fn();
-	const registerExtensionsMock = jest.fn();
-	m.registerView = registerViewMock;
-	m.registerExtensions = registerExtensionsMock;
-	m.onload();
-	expect(registerViewMock).toBeCalled();
-	expect(registerExtensionsMock).toBeCalled();
+	await m.onload();
+	expect(m.addSettingTab).toBeCalled();
+	expect(m.registerView).toBeCalled();
+	expect(m.registerExtensions).toBeCalled();
+	expect(m.registerMarkdownCodeBlockProcessor).toBeCalled();
 });

@@ -39,11 +39,12 @@ export default function Child(props: {
 			onDragEnd={() => stopDnd()}
 			onDragEnter={() => onDraged()}
 			data-testid="TierListForObsidianChild"
+			title={props.child.name}
 			draggable
 		>
 			<img
 				src={props.plugin.app.vault.adapter.getResourcePath(
-					props.child.img
+					`${props.plugin.settings.ImgPath}/${props.child.img}`
 				)}
 			/>
 		</li>

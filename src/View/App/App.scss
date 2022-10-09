@@ -1,0 +1,22 @@
+.TierListForObsidianButtonSmall {
+	width: 2em;
+	height: 2em;
+	padding: 0.5em;
+	svg {
+		fill: var(--text-normal);
+		&:hover {
+			fill: var(--text-muted);
+		}
+	}
+}
+
+.TierListForObsidianApp {
+	height: 100%;
+	display: grid;
+	grid-template-rows: 3vh 10vh auto 20vh;
+}
+
+.TierListForObsidianTitle {
+	margin: 1em auto;
+	font-size: 2em;
+}

@@ -31,6 +31,8 @@ export default class tierList {
 	dragedOverChildID: string;
 	dragedOverTierID: string;
 
+	edit: boolean = true;
+
 	constructor() {
 		this.name = "new Tierlist";
 		this.tiers = new Array();
@@ -69,7 +71,7 @@ export default class tierList {
 
 	addChildTo(child: child, toTierId: string, toChildId: string) {
 		if (toTierId === "0") {
-			this.stack.push(child);
+			this.stack.unshift(child);
 			return;
 		} else {
 			this.tiers.forEach((tier) => {
@@ -136,6 +138,7 @@ export default class tierList {
 	}
 
 	drop(callback: Function) {
+		if (!this.edit) return;
 		this.moveChild(
 			this.dragedChildID,
 			this.dragedChildTierID,

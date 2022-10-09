@@ -13,7 +13,7 @@ var tl: tierList;
 var child: childClass;
 beforeEach(() => {
 	tl = new tierList();
-	tl.newChild("test", "test.jpg");
+	tl.newChild("", "");
 	child = tl.stack[0];
 	tierListDorpMock.mockClear();
 });

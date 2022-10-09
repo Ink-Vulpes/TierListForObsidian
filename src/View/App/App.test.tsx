@@ -6,9 +6,9 @@ import tierListForObsidian from "../../main";
 import tierList from "../../tierList";
 import "@testing-library/jest-dom/extend-expect";
 
-jest.mock("../NavBar", () => () => <div></div>);
-jest.mock("../stack", () => () => <div></div>);
-jest.mock("../TierList", () => () => <div></div>);
+jest.mock("../../components/NavBar", () => () => <div></div>);
+jest.mock("../../components/stack", () => () => <div></div>);
+jest.mock("../../components/TierList", () => () => <div></div>);
 
 var tl: tierList;
 var AppTitleDom: HTMLElement;

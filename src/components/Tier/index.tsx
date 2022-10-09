@@ -63,39 +63,45 @@ export default function Tier(props: {
 			className="TierListForObsidiaTier"
 			data-testid="TierListForObsidiaTier"
 		>
-			<div className="TierListForObsidiaTierEdit">
-				<input
-					type="text"
-					data-testid="TierListForObsidiaTierInputImg"
-					value={name}
-					onChange={(e) => changeEventHandler(e, false)}
-					onKeyDown={(e) => enterEventHandler(e)}
-					hidden={!settings}
-				/>
-				<input
-					type="text"
-					data-testid="TierListForObsidiaTierInputText"
-					value={color}
-					style={{ backgroundColor: color }}
-					onChange={(e) => changeEventHandler(e, true)}
-					onKeyDown={(e) => enterEventHandler(e)}
-					hidden={!settings}
-				/>
-			</div>
-			<h3
-				data-testid="TierListForObsidiaTierText"
+			<div
 				className="TierListForObsidiaTierText"
 				style={{ backgroundColor: props.tier.color }}
-				onClick={() => setSettings(true)}
-				hidden={settings}
 			>
-				{props.tier.name}
-			</h3>
+				<div className="TierListForObsidiaTierEdit">
+					<input
+						type="text"
+						data-testid="TierListForObsidiaTierInputImg"
+						value={name}
+						onChange={(e) => changeEventHandler(e, false)}
+						onKeyDown={(e) => enterEventHandler(e)}
+						hidden={!settings}
+					/>
+					<input
+						type="text"
+						data-testid="TierListForObsidiaTierInputText"
+						value={color}
+						style={{ backgroundColor: color }}
+						onChange={(e) => changeEventHandler(e, true)}
+						onKeyDown={(e) => enterEventHandler(e)}
+						hidden={!settings}
+					/>
+				</div>
+				<p
+					data-testid="TierListForObsidiaTierText"
+					onClick={() =>
+						props.tierList.current.edit && setSettings(true)
+					}
+					hidden={settings}
+				>
+					{props.tier.name}
+				</p>
+			</div>
 			<ul className="TierListForObsidiaTierChildren">{children}</ul>
 			<button
 				className="TierListForObsidianButtonSmall"
 				data-testid="TierListForObsidiaTierButtonRemove"
 				onClick={removeTier}
+				hidden={!props.tierList.current.edit}
 			>
 				<Close />
 			</button>

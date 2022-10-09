@@ -1,14 +1,26 @@
 .TierListForObsidiaTier {
 	display: grid;
-	min-height: 5em;
+	min-height: 3vh;
 	grid-template-columns: 10% auto 2em;
 	background-color: var(--background-secondary);
 }
 
 .TierListForObsidiaTierText {
 	overflow: hidden;
+	margin: 0 !important;
+	justify-content: center;
+	align-items: center;
+	height: 8vh;
+	display: flex;
+	p {
+		text-align: center;
+		font-size: 3vh;
+		margin: 0;
+	}
 }
-
+.TierListForObsidiaTierEdit {
+	height: 8vh;
+}
 .TierListForObsidiaTierEdit,
 .TierListForObsidiaTierText {
 	grid-column: 1;
@@ -18,4 +30,9 @@
 .TierListForObsidiaTierChildren {
 	grid-column: 2;
 	grid-row: 1;
+
+	&::before {
+		content: "" !important;
+		border-right: none !important;
+	}
 }
