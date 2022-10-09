@@ -17,8 +17,8 @@ export class TierListForObsidianSettingsTab extends PluginSettingTab {
 	display() {
 		this.containerEl.empty();
 		new Setting(this.containerEl)
-			.setName("Imagefolder")
-			.setDesc("")
+			.setName("Image Folder")
+			.setDesc("A place where you put your pictures.")
 			.addText((text) =>
 				text
 					.setValue(this.plugin.settings.ImgPath)

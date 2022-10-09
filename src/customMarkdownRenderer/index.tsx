@@ -75,6 +75,8 @@ export default class MarkdownRenderer extends MarkdownRenderChild {
 				if (this.root._internalRoot === null) return;
 				this.root.unmount();
 				break;
+			case "text":
+				this.containerEl.innerHTML = "";
 		}
 	}
 

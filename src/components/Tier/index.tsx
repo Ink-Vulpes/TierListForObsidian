@@ -18,20 +18,10 @@ export default function Tier(props: {
 	const [name, setName] = useState(() => props.tier.name);
 	const children: Array<JSX.Element> = [];
 
-	function changeEventHandler(
-		e: React.ChangeEvent<HTMLInputElement>,
-		changeColor: boolean
-	) {
-		if (changeColor) setColor(e.target.value);
-		else setName(e.target.value);
-	}
-
-	function enterEventHandler(e: React.KeyboardEvent<HTMLInputElement>) {
-		if (e.key === "Enter") {
-			props.tier.name = name;
-			props.tier.color = color;
-			setSettings(false);
-		}
+	function save() {
+		props.tier.name = name;
+		props.tier.color = color;
+		setSettings(false);
 	}
 
 	function removeTier() {
@@ -66,33 +56,34 @@ export default function Tier(props: {
 			<div
 				className="TierListForObsidiaTierText"
 				style={{ backgroundColor: props.tier.color }}
+				onClick={() =>
+					props.tierList.current.edit &&
+					!settings &&
+					setSettings(true)
+				}
 			>
 				<div className="TierListForObsidiaTierEdit">
 					<input
 						type="text"
-						data-testid="TierListForObsidiaTierInputImg"
 						value={name}
-						onChange={(e) => changeEventHandler(e, false)}
-						onKeyDown={(e) => enterEventHandler(e)}
+						onChange={(e) => setName(e.target.value)}
+						onKeyDown={(e) => {
+							if (e.key === "Enter") save();
+						}}
 						hidden={!settings}
 					/>
 					<input
-						type="text"
-						data-testid="TierListForObsidiaTierInputText"
+						type="color"
 						value={color}
 						style={{ backgroundColor: color }}
-						onChange={(e) => changeEventHandler(e, true)}
-						onKeyDown={(e) => enterEventHandler(e)}
+						onChange={(e) => setColor(e.target.value)}
 						hidden={!settings}
 					/>
+					<button onClick={save} hidden={!settings}>
+						Save
+					</button>
 				</div>
-				<p
-					data-testid="TierListForObsidiaTierText"
-					onClick={() =>
-						props.tierList.current.edit && setSettings(true)
-					}
-					hidden={settings}
-				>
+				<p data-testid="TierListForObsidiaTierText" hidden={settings}>
 					{props.tier.name}
 				</p>
 			</div>

@@ -11,7 +11,7 @@ export default class tier {
 	constructor() {
 		this.id = makeid(25);
 		this.name = "new tier";
-		this.color = "red";
+		this.color = "#b8cf55";
 		this.children = new Array();
 	}
 
