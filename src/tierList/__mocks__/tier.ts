@@ -1,38 +1,29 @@
-import { tierSaveFormat } from "../.";
-import { dummySave as childDummySave } from "./child";
-import child from "./child";
-
+import { tierSaveFormat } from "tierList";
+import tier from "./tier";
+import { dummySave as childSaveDummy } from "./child";
 export const dummySave: tierSaveFormat = {
 	id: "tierDummyId",
 	name: "tierDummyName",
 	color: "tierDummyColor",
-	children: [{ ...childDummySave }],
+	children: [{ ...childSaveDummy }],
 };
 
-export default class mock {
-	removeChild(childId: string): child | undefined {
-		return;
-	}
-	addChild(child: child, index: number | undefined) {}
-	getChildIndex(childId: string): number | undefined {
-		return;
-	}
-	save(): tierSaveFormat {
-		return { ...dummySave };
-	}
-	load(save: tierSaveFormat) {}
-}
+export const _removeChild = jest.fn();
+export const _addChild = jest.fn();
+export const _getChildIndex = jest.fn(() => 1);
+export const _save = jest.fn(() => ({ ...dummySave }));
+export const _load = jest.fn(() => new tier());
 
-mock.prototype.removeChild = jest.fn((childId: string) => {
-	if (childId !== childDummySave.id) return;
-	return { ...childDummySave };
-}) as any;
-mock.prototype.addChild = jest.fn();
-mock.prototype.getChildIndex = jest.fn(
-	(childId: string): number | undefined => {
-		if (childId !== childDummySave.id) return;
-		return 1;
-	}
-);
-mock.prototype.save = jest.fn(() => ({ ...dummySave }));
-mock.prototype.load = jest.fn();
+const mock = jest.fn().mockImplementation(() => ({
+	id: dummySave.id,
+	name: dummySave.name,
+	color: dummySave.color,
+	children: [],
+	removeChild: _removeChild,
+	addChild: _addChild,
+	getChildIndex: _getChildIndex,
+	save: _save,
+	load: _load,
+}));
+
+export default mock;

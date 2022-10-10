@@ -1,3 +1,4 @@
+import child from "./child";
 import { childSaveFormat } from "../.";
 
 export const dummySave: childSaveFormat = {
@@ -7,14 +8,12 @@ export const dummySave: childSaveFormat = {
 	name: "dummyChildName",
 };
 
-export default class mock {
-	id: string = dummySave.id;
-	name: string = dummySave.name;
-	color: string = dummySave.color;
-	img: string = dummySave.img;
-	load() {}
-	save() {}
-}
+const _load = jest.fn(() => new child());
+const _save = jest.fn(() => ({ ...dummySave }));
 
-mock.prototype.load = jest.fn(() => ({ ...dummySave }));
-mock.prototype.save = jest.fn();
+const mock = jest.fn().mockImplementation(() => ({
+	...dummySave,
+	load: _load,
+	save: _save,
+}));
+export default mock;

@@ -3,10 +3,12 @@ import { App, PluginSettingTab, Setting } from "obsidian";
 
 export type TierListForObsidianSettings = {
 	ImgPath: string;
+	RootPath: string;
 };
 export const TIER_LIST_FOR_OBSIDIAN_DEFAULT_SETTINGS: TierListForObsidianSettings =
 	{
 		ImgPath: "",
+		RootPath: "",
 	};
 export class TierListForObsidianSettingsTab extends PluginSettingTab {
 	plugin: tierListForObsidian;
@@ -25,6 +27,18 @@ export class TierListForObsidianSettingsTab extends PluginSettingTab {
 					.setPlaceholder("Path")
 					.onChange((v) => {
 						this.plugin.settings.ImgPath = v;
+						this.plugin.saveSettings();
+					})
+			);
+		new Setting(this.containerEl)
+			.setName("Tier List Folder")
+			.setDesc("A place where you put the Tierlist files.")
+			.addText((text) =>
+				text
+					.setValue(this.plugin.settings.RootPath)
+					.setPlaceholder("Path")
+					.onChange((v) => {
+						this.plugin.settings.RootPath = v;
 						this.plugin.saveSettings();
 					})
 			);
