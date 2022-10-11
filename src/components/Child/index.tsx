@@ -12,24 +12,24 @@ export default function Child(props: {
 	plugin: tierListForObsidian;
 }) {
 	function startDnd() {
-		props.tierList.current.dragedChildID = props.child.id;
-		props.tierList.current.dragedChildTierID =
+		props.tierList.current.draggedChildID = props.child.id;
+		props.tierList.current.draggedChildTierID =
 			props.tier === undefined ? "0" : props.tier.id;
 	}
 
 	function stopDnd() {
 		props.tierList.current.drop(props.render);
-		props.tierList.current.dragedChildID = "";
-		props.tierList.current.dragedChildTierID = "";
+		props.tierList.current.draggedChildID = "";
+		props.tierList.current.draggedChildTierID = "";
 	}
 
-	function onDraged() {
+	function onDragged() {
 		if (
-			props.tierList.current.dragedOverChildID === props.child.id ||
-			props.tierList.current.dragedChildID === props.child.id
+			props.tierList.current.draggedOverChildID === props.child.id ||
+			props.tierList.current.draggedChildID === props.child.id
 		)
 			return;
-		props.tierList.current.dragedOverChildID = props.child.id;
+		props.tierList.current.draggedOverChildID = props.child.id;
 	}
 
 	return (
@@ -37,8 +37,7 @@ export default function Child(props: {
 			className="TierListForObsidianChild"
 			onDragStart={() => startDnd()}
 			onDragEnd={() => stopDnd()}
-			onDragEnter={() => onDraged()}
-			data-testid="TierListForObsidianChild"
+			onDragEnter={() => onDragged()}
 			title={props.child.name}
 			draggable
 		>

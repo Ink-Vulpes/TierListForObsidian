@@ -1,4 +1,4 @@
-import tierList, { tierListSaveFormat } from "./.";
+import tierList from "./.";
 import * as child from "./child";
 import * as tier from "./tier";
 import * as _child from "./__mocks__/child";
@@ -78,12 +78,12 @@ describe("test moveChild()", () => {
 		expect(tl.addChildTo).not.toBeCalled();
 	});
 	it("normal case", () => {
-		const dummychild = new child.default("", "");
-		tl.removeChild = jest.fn(() => dummychild);
+		const dummyChild = new child.default("", "");
+		tl.removeChild = jest.fn(() => dummyChild);
 		tl.addChildTo = jest.fn();
 		tl.moveChild("childId", "childTierId", "moveToChildId", "moveToTierId");
 		expect(tl.addChildTo).toBeCalledWith(
-			dummychild,
+			dummyChild,
 			"moveToTierId",
 			"moveToChildId"
 		);
@@ -118,10 +118,10 @@ describe("test drop()", () => {
 		tl.moveChild = jest.fn();
 		tl.drop(callbackFN);
 		expect(tl.moveChild).toBeCalledWith(
-			tl.dragedChildID,
-			tl.dragedChildTierID,
-			tl.dragedOverChildID,
-			tl.dragedOverTierID
+			tl.draggedChildID,
+			tl.draggedChildTierID,
+			tl.draggedOverChildID,
+			tl.draggedOverTierID
 		);
 		expect(callbackFN).toBeCalled();
 	});

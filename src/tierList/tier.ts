@@ -1,5 +1,5 @@
 import child from "./child";
-import makeid from "../utils/makeId";
+import makeId from "../utils/makeId";
 import { childSaveFormat, tierSaveFormat } from ".";
 
 export default class tier {
@@ -9,7 +9,7 @@ export default class tier {
 	children: Array<child>;
 
 	constructor() {
-		this.id = makeid(25);
+		this.id = makeId(25);
 		this.name = "new tier";
 		this.color = "#b8cf55";
 		this.children = new Array();

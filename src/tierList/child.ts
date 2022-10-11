@@ -1,4 +1,4 @@
-import makeid from "../utils/makeId";
+import makeId from "../utils/makeId";
 import { childSaveFormat } from "./index";
 
 export default class child {
@@ -8,7 +8,7 @@ export default class child {
 	img: string;
 
 	constructor(name: string, img: string) {
-		this.id = makeid(25);
+		this.id = makeId(25);
 		this.color = "red";
 		this.name = name;
 		this.img = img;

@@ -26,10 +26,10 @@ export default class tierList {
 	tiers: Array<tier>;
 	stack: Array<child>;
 
-	dragedChildID: string;
-	dragedChildTierID: string;
-	dragedOverChildID: string;
-	dragedOverTierID: string;
+	draggedChildID: string;
+	draggedChildTierID: string;
+	draggedOverChildID: string;
+	draggedOverTierID: string;
 
 	edit: boolean = true;
 
@@ -37,10 +37,10 @@ export default class tierList {
 		this.name = "new Tierlist";
 		this.tiers = new Array();
 		this.stack = new Array();
-		this.dragedChildID = "";
-		this.dragedChildTierID = "";
-		this.dragedOverChildID = "";
-		this.dragedOverTierID = "";
+		this.draggedChildID = "";
+		this.draggedChildTierID= "";
+		this.draggedOverChildID= "";
+		this.draggedOverTierID= "";
 	}
 
 	newChild(name: string, img: string) {
@@ -140,10 +140,10 @@ export default class tierList {
 	drop(callback: Function) {
 		if (!this.edit) return;
 		this.moveChild(
-			this.dragedChildID,
-			this.dragedChildTierID,
-			this.dragedOverChildID,
-			this.dragedOverTierID
+			this.draggedChildID,
+			this.draggedChildTierID,
+			this.draggedOverChildID,
+			this.draggedOverTierID
 		);
 		callback();
 	}
