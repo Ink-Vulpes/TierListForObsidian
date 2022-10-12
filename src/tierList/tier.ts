@@ -25,7 +25,7 @@ export default class tier {
 		}
 	}
 
-	addChild(child: child, index: number | undefined) {
+	addChild(child: child, index?: number | undefined) {
 		if (index === undefined) this.children.push(child);
 		else this.children.splice(index + 1, 0, child);
 	}

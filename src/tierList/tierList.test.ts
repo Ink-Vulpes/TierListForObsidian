@@ -109,7 +109,7 @@ it("test save()", () => {
 	tl.stack.push(new child.default("", ""));
 	tl.tiers.push(new tier.default());
 	tl.name = saveDummy.name;
-	expect(tl.save()).toMatchObject(saveDummy);
+	expect(tl.save()).toEqual(saveDummy);
 });
 describe("test drop()", () => {
 	it("edit true", () => {
