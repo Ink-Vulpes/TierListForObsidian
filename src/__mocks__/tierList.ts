@@ -1,6 +1,7 @@
-import { tierListSaveFormat } from "tierList";
-import { dummySave as childSaveDummy } from "./child";
-import { dummySave as tierSaveDummy } from "./tier";
+import tierList, { tierListSaveFormat } from "tierList";
+import { DeepMockProxy, mockDeep } from "jest-mock-extended";
+import { dummySave as childSaveDummy } from "../tierList/__mocks__/child";
+import { dummySave as tierSaveDummy } from "../tierList/__mocks__/tier";
 export const saveDummy: tierListSaveFormat = {
 	name: "tierListDummyName",
 	stack: [{ ...childSaveDummy }],

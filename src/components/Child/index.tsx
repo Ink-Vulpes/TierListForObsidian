@@ -35,6 +35,7 @@ export default function Child(props: {
 	return (
 		<li
 			className="TierListForObsidianChild"
+			data-testid="TierListForObsidianChild"
 			onDragStart={() => startDnd()}
 			onDragEnd={() => stopDnd()}
 			onDragEnter={() => onDragged()}
