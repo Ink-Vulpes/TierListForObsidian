@@ -46,6 +46,7 @@ export default function Child(props: {
 				src={props.plugin.app.vault.adapter.getResourcePath(
 					`${props.plugin.settings.ImgPath}/${props.child.img}`
 				)}
+				alt=""
 			/>
 		</li>
 	);

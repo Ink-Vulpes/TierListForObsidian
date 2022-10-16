@@ -38,9 +38,9 @@ export default class tierList {
 		this.tiers = new Array();
 		this.stack = new Array();
 		this.draggedChildID = "";
-		this.draggedChildTierID= "";
-		this.draggedOverChildID= "";
-		this.draggedOverTierID= "";
+		this.draggedChildTierID = "";
+		this.draggedOverChildID = "";
+		this.draggedOverTierID = "";
 	}
 
 	newChild(name: string, img: string) {
@@ -146,5 +146,15 @@ export default class tierList {
 			this.draggedOverTierID
 		);
 		callback();
+	}
+
+	clear() {
+		this.name = "new Tierlist";
+		this.tiers = new Array();
+		this.stack = new Array();
+		this.draggedChildID = "";
+		this.draggedChildTierID = "";
+		this.draggedOverChildID = "";
+		this.draggedOverTierID = "";
 	}
 }

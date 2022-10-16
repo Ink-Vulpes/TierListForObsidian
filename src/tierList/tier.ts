@@ -8,10 +8,10 @@ export default class tier {
 	color: string;
 	children: Array<child>;
 
-	constructor() {
+	constructor(tier?: tierSaveFormat) {
 		this.id = makeId(25);
-		this.name = "new tier";
-		this.color = "#b8cf55";
+		this.name = tier === undefined ? "new tier" : tier.name;
+		this.color = tier === undefined ? "#b8cf55" : tier.color;
 		this.children = new Array();
 	}
 

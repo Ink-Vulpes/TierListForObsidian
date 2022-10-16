@@ -29,9 +29,9 @@ export default function Tier(props: {
 		props.render();
 	}
 
-	function onDraged(e: React.DragEvent<HTMLLIElement>) {
-		if (props.tierList.current.dragedOverTierID === props.tier.id) return;
-		props.tierList.current.dragedOverTierID = props.tier.id;
+	function onDragged(e: React.DragEvent<HTMLLIElement>) {
+		if (props.tierList.current.draggedOverTierID === props.tier.id) return;
+		props.tierList.current.draggedOverTierID = props.tier.id;
 	}
 
 	props.tier.children.forEach((v) =>
@@ -49,12 +49,11 @@ export default function Tier(props: {
 
 	return (
 		<li
-			onDragEnter={(e) => onDraged(e)}
-			className="TierListForObsidiaTier"
-			data-testid="TierListForObsidiaTier"
+			onDragEnter={(e) => onDragged(e)}
+			className="TierListForObsidianTier"
 		>
 			<div
-				className="TierListForObsidiaTierText"
+				className="TierListForObsidianTierText"
 				style={{ backgroundColor: props.tier.color }}
 				onClick={() =>
 					props.tierList.current.edit &&
@@ -62,7 +61,7 @@ export default function Tier(props: {
 					setSettings(true)
 				}
 			>
-				<div className="TierListForObsidiaTierEdit">
+				<div className="TierListForObsidianTierEdit">
 					<input
 						type="text"
 						value={name}
@@ -83,14 +82,11 @@ export default function Tier(props: {
 						Save
 					</button>
 				</div>
-				<p data-testid="TierListForObsidiaTierText" hidden={settings}>
-					{props.tier.name}
-				</p>
+				<p hidden={settings}>{props.tier.name}</p>
 			</div>
-			<ul className="TierListForObsidiaTierChildren">{children}</ul>
+			<ul className="TierListForObsidianTierChildren">{children}</ul>
 			<button
 				className="TierListForObsidianButtonSmall"
-				data-testid="TierListForObsidiaTierButtonRemove"
 				onClick={removeTier}
 				hidden={!props.tierList.current.edit}
 			>
