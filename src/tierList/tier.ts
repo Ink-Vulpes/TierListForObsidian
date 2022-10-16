@@ -1,5 +1,5 @@
 import child from "./child";
-import makeid from "../utils/makeId";
+import makeId from "../utils/makeId";
 import { childSaveFormat, tierSaveFormat } from ".";
 
 export default class tier {
@@ -8,10 +8,10 @@ export default class tier {
 	color: string;
 	children: Array<child>;
 
-	constructor() {
-		this.id = makeid(25);
-		this.name = "new tier";
-		this.color = "#b8cf55";
+	constructor(tier?: tierSaveFormat) {
+		this.id = makeId(25);
+		this.name = tier === undefined ? "new tier" : tier.name;
+		this.color = tier === undefined ? "#b8cf55" : tier.color;
 		this.children = new Array();
 	}
 
@@ -25,7 +25,7 @@ export default class tier {
 		}
 	}
 
-	addChild(child: child, index: number | undefined) {
+	addChild(child: child, index?: number | undefined) {
 		if (index === undefined) this.children.push(child);
 		else this.children.splice(index + 1, 0, child);
 	}

@@ -6,13 +6,16 @@ import {
 	TierListForObsidianSettingsTab,
 } from "./settings";
 import customMarkdownRenderer from "./customMarkdownRenderer";
+import newTierListModal from "newTierListModal";
 
 export const TIER_LIST_FOR_OBSIDIAN_VIEW_TYP = "tierlist";
 export default class tierListForObsidian extends Plugin {
 	settings: TierListForObsidianSettings;
+	newTierListModal: newTierListModal;
 
 	constructor(app: App, manifest: PluginManifest) {
 		super(app, manifest);
+		this.newTierListModal = new newTierListModal(this);
 	}
 
 	async onload(): Promise<void> {
@@ -22,13 +25,21 @@ export default class tierListForObsidian extends Plugin {
 			TIER_LIST_FOR_OBSIDIAN_VIEW_TYP,
 			(leaf: WorkspaceLeaf) => new tierListForObsidianView(leaf, this)
 		);
-		this.registerExtensions(["tierlist"], TIER_LIST_FOR_OBSIDIAN_VIEW_TYP);
+		this.registerExtensions(
+			[TIER_LIST_FOR_OBSIDIAN_VIEW_TYP],
+			TIER_LIST_FOR_OBSIDIAN_VIEW_TYP
+		);
 		this.registerMarkdownCodeBlockProcessor(
 			TIER_LIST_FOR_OBSIDIAN_VIEW_TYP,
 			(source, el, ctx) => {
 				ctx.addChild(new customMarkdownRenderer(el, source, this));
 			}
 		);
+		this.addCommand({
+			id: "tierListForObsidianNewList",
+			name: "new Tier List",
+			callback: () => this.newTierListModal.open(),
+		});
 	}
 
 	async loadSettings(): Promise<void> {

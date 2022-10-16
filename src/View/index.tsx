@@ -1,10 +1,10 @@
 import tierListForObsidian, { TIER_LIST_FOR_OBSIDIAN_VIEW_TYP } from "../main";
-import { TextFileView, WorkspaceLeaf } from "obsidian";
+import { TextFileView, TFile, WorkspaceLeaf } from "obsidian";
 import * as React from "react";
 import * as ReactDOM from "react-dom";
 import { createRoot, Root } from "react-dom/client";
 import App from "./App";
-import tierListClass from "../tierList";
+import tierListClass, { tierListSaveFormat } from "../tierList";
 
 export default class tierListForObsidianView extends TextFileView {
 	plugin: tierListForObsidian;
@@ -17,7 +17,9 @@ export default class tierListForObsidianView extends TextFileView {
 		this.tierList = new tierListClass();
 	}
 
-	clear(): void {}
+	clear(): void {
+		this.tierList.clear();
+	}
 
 	async onOpen() {
 		this.root = createRoot(this.containerEl.children[1]);
@@ -38,7 +40,7 @@ export default class tierListForObsidianView extends TextFileView {
 		return TIER_LIST_FOR_OBSIDIAN_VIEW_TYP;
 	}
 
-	setViewData(data: string, clear = false): void {
+	setViewData(data: string, clear = true): void {
 		this.tierList.load(JSON.parse(data));
 		this.root.render(
 			<React.StrictMode>
