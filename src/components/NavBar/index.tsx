@@ -38,32 +38,28 @@ export default function NavBar(props: {
 				<input
 					type="text"
 					placeholder="Name"
-					data-testid="TierListForObsidianTextInput"
 					ref={NewChildName}
 					onKeyDown={(e) => EnterEvent(e)}
-					hidden={!addChildContext}
+					style={{display: !addChildContext?'none':''}}
 				/>
 				<input
 					type="text"
 					placeholder="Image path"
-					data-testid="TierListForObsidianImgInput"
 					onKeyDown={(e) => EnterEvent(e)}
 					ref={NewChildImg}
-					hidden={!addChildContext}
+					style={{display: !addChildContext?'none':''}}
 				/>
 				<button
 					className="TierListForObsidianButtonSmall"
-					data-testid="TierListForObsidianButtonAddChildSave"
 					onClick={AddChild}
-					hidden={!addChildContext}
+					style={{display: !addChildContext?'none':''}}
 				>
 					<Plus />
 				</button>
 				<button
 					className="TierListForObsidianButtonSmall"
-					data-testid="TierListForObsidianButtonAddChildClose"
 					onClick={() => setAddChildContext(false)}
-					hidden={!addChildContext}
+					style={{display: !addChildContext?'none':''}}
 				>
 					<Close />
 				</button>
@@ -71,25 +67,22 @@ export default function NavBar(props: {
 			<>
 				<button
 					className="TierListForObsidianButtonSmall"
-					data-testid="TierListForObsidianButtonAddChild"
 					onClick={() => setAddChildContext(true)}
-					hidden={addChildContext}
+					style={{display: addChildContext?'none':''}}
 				>
 					<Plus />
 				</button>
 				<button
 					className="TierListForObsidianButtonSmall"
-					data-testid="TierListForObsidianButtonAddTier"
 					onClick={AddTier}
-					hidden={addChildContext}
+					style={{display: addChildContext?'none':''}}
 				>
 					<SquarePlus />
 				</button>
 				<button
 					className="TierListForObsidianButtonSmall"
-					data-testid="TierListForObsidianFileSave"
 					onClick={() => props.saveFn()}
-					hidden={addChildContext}
+					style={{display: addChildContext?'none':''}}
 				>
 					<Save />
 				</button>

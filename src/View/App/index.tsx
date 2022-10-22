@@ -27,12 +27,10 @@ export default function App(props: {
 	return (
 		<div
 			className="TierListForObsidianApp"
-			data-testid="TierListForObsidianApp"
 		>
 			<NavBar tierList={tierList} render={render} saveFn={props.saveFn} />
 			<input
 				type="text"
-				data-testid="TierListForObsidiaInput"
 				value={rename}
 				onChange={(c) => setRename(c.target.value)}
 				onKeyDown={(e) => setTitle(e)}
@@ -40,7 +38,6 @@ export default function App(props: {
 			/>
 			<h2
 				className="TierListForObsidianTitle"
-				data-testid="TierListForObsidianTitle"
 				onClick={() => {
 					setRenameT(true);
 				}}
