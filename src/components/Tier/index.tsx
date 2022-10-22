@@ -78,7 +78,7 @@ export default function Tier(props: {
 						onChange={(e) => setColor(e.target.value)}
 						hidden={!settings}
 					/>
-					<button onClick={save} hidden={!settings}>
+					<button onClick={save} style={{display: !settings?'none':''}}>
 						Save
 					</button>
 				</div>

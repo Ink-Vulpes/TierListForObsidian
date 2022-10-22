@@ -19,28 +19,26 @@ export default function Stack(props: {
 				plugin={props.plugin}
 				tier={undefined}
 				tierList={props.tierList}
-				data-testid="TierListForObsidiaStackChild"
 			/>
 		)
 	);
 
-	function onDraged() {
-		if (props.tierList.current.dragedOverTierID === "0") return;
-		props.tierList.current.dragedOverTierID = "0";
+	function onDragged() {
+		if (props.tierList.current.draggedOverTierID === "0") return;
+		props.tierList.current.draggedOverTierID = "0";
 	}
 
-	function delDraged() {
-		if (props.tierList.current.dragedOverTierID === "del") return;
-		props.tierList.current.dragedOverTierID = "del";
+	function delDragged() {
+		if (props.tierList.current.draggedOverTierID === "del") return;
+		props.tierList.current.draggedOverTierID = "del";
 	}
 
 	return (
 		<div className="TierListForObsidianStack">
-			<ul onDragEnter={() => onDraged()}>{children}</ul>
+			<ul onDragEnter={() => onDragged()}>{children}</ul>
 			<div
 				className="TierListForObsidianStackDel"
-				data-testid="TierListForObsidianStackDel"
-				onDragEnter={() => delDraged()}
+				onDragEnter={() => delDragged()}
 			>
 				<Trash />
 			</div>
